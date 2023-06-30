@@ -1,0 +1,16 @@
+services:
+  mongo:
+    container_name: cloudy_db
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo:/data/db
+  api:
+    container_name: cloudy_api
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+volumes:
+  mongo: {}
